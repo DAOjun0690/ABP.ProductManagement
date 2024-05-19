@@ -12,7 +12,17 @@
 
 <abp-card>
     <abp-card-header>
-        <h2>@L["Menu:Products"]</h2>
+        <abp-row>
+            <abp-column size-md="_6">
+                <abp-card-title><h2>@L["Menu:Products"]</h2></abp-card-title>
+            </abp-column>
+        </abp-row>
+
+        <abp-column size-md="_6" class="text-end">
+            <abp-button id="NewProductButton" text="@L["NewProduct"].Value" 
+                icon="plus" button-type="Primary">
+            </abp-button>
+        </abp-column>
     </abp-card-header>
     <abp-card-body>
         <abp-table id="ProductsTable" striped-rows="true"></abp-table>

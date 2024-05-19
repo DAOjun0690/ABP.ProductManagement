@@ -14,13 +14,16 @@ namespace ABP.ProductManagement.Products
     public class ProductAppService : ProductManagementAppService, IProductAppService
     {
         private readonly IRepository<Product, Guid> _productRepository;
+        private readonly IRepository<Category, Guid> _categoryRepository;
         private readonly IUnitOfWorkManager _unitOfWorkManager;
 
         public ProductAppService(
             IRepository<Product, Guid> productRepository,
+            IRepository<Category, Guid> categoryRepository,
             IUnitOfWorkManager unitOfWorkManager)
         {
             _productRepository = productRepository;
+            _categoryRepository = categoryRepository;
             _unitOfWorkManager = unitOfWorkManager;
         }
 
@@ -39,6 +42,19 @@ namespace ABP.ProductManagement.Products
             return new PagedResultDto<ProductDto>(
                 count, 
                 ObjectMapper.Map<List<Product>, List<ProductDto>>(products));
+        }
+
+        async Task IProductAppService.CreateAsync(CreateUpdateProductDto input)
+        {
+            var product = ObjectMapper.Map<CreateUpdateProductDto, Product>(input);
+            await _productRepository.InsertAsync(product);
+        }
+
+        async Task<ListResultDto<CategoryLookupDto>> IProductAppService.GetCategoriesAsync()
+        {
+            var categories = await _categoryRepository.GetListAsync();
+            var categoryLookupDtos = ObjectMapper.Map<List<Category>, List<CategoryLookupDto>>(categories);
+            return new ListResultDto<CategoryLookupDto>(categoryLookupDtos);
         }
     }
 }
