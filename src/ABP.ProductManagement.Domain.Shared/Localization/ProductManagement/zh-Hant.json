@@ -1,8 +1,19 @@
 {
-    "culture": "zh-Hant",
-    "texts": {
-      "Menu:Home": "首頁",
-      "Welcome": "歡迎",
-      "LongWelcomeMessage": "歡迎來到此應用程式. 這是一個基於ABP框架的起始專案. 有關更多訊息, 請瀏覽 abp.io."
-    }
+  "culture": "zh-Hant",
+  "texts": {
+    "Menu:Home": "首頁",
+    "Welcome": "歡迎",
+    "LongWelcomeMessage": "歡迎來到此應用程式. 這是一個基於ABP框架的起始專案. 有關更多訊息, 請瀏覽 abp.io.",
+    "Menu:ProductManagement": "產品管理",
+    "Menu:Products": "產品",
+    "Name": "名稱",
+    "CategoryName": "類別",
+    "Price": "價格",
+    "StockState": "狀態",
+    "Enum:StockState:0": "預購",
+    "Enum:StockState:1": "已購買",
+    "Enum:StockState:2": "不可用",
+    "Enum:StockState:3": "已停用",
+    "CreationTime": "建立日期"
   }
+}

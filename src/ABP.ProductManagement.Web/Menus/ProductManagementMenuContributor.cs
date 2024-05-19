@@ -34,6 +34,18 @@ public class ProductManagementMenuContributor : IMenuContributor
             )
         );
 
+        context.Menu
+            .AddItem(
+                new ApplicationMenuItem( // 主菜單項
+                    "ProductManagement",
+                    l["Menu:ProductManagement"], // l是表從i18n中讀取
+                    icon: "fas fa-shopping-cart")
+                    .AddItem(new ApplicationMenuItem( // 子菜單項
+                        "ProductManagement.Products",
+                        l["Menu:Products"],
+                        url: "/Products"))
+            );
+
         if (MultiTenancyConsts.IsEnabled)
         {
             administration.SetSubItemOrder(TenantManagementMenuNames.GroupName, 1);
