@@ -18,6 +18,8 @@
     "NewProduct": "新增產品",
     "Category": "類別",
     "IsFreeCargo": "郵寄",
-    "ReleaseDate": "發布日期"
+    "ReleaseDate": "發布日期",
+    "ProductDeleteConfirmationMessage": "您確定要刪除產品【{0}】嗎?",
+    "SuccessfullyDeleted": "刪除成功!"
   }
 }

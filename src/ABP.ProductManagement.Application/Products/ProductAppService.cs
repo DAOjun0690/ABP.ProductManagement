@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Dynamic.Core;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.Domain.Repositories;
@@ -40,7 +41,7 @@ namespace ABP.ProductManagement.Products
             var count = await _productRepository.GetCountAsync();
 
             return new PagedResultDto<ProductDto>(
-                count, 
+                count,
                 ObjectMapper.Map<List<Product>, List<ProductDto>>(products));
         }
 
@@ -55,6 +56,24 @@ namespace ABP.ProductManagement.Products
             var categories = await _categoryRepository.GetListAsync();
             var categoryLookupDtos = ObjectMapper.Map<List<Category>, List<CategoryLookupDto>>(categories);
             return new ListResultDto<CategoryLookupDto>(categoryLookupDtos);
+        }
+
+        public async Task<ProductDto> GetAsync(Guid id)
+        {
+            var product = await _productRepository.GetAsync(id);
+            return ObjectMapper.Map<Product, ProductDto>(product);
+        }
+
+        public async Task UpdateAsync(Guid id, CreateUpdateProductDto input)
+        {
+            var product = await _productRepository.GetAsync(id);
+            // ef core 有實體追蹤功能，所以只要查詢出來，更新model後，會在請求結束時，保存更新資料。
+            ObjectMapper.Map(input, product);
+        }
+
+        public async Task DeleteAsync(Guid id)
+        {
+            await _productRepository.DeleteAsync(id); // 軟刪除
         }
     }
 }
