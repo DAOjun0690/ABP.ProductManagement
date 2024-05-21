@@ -14,12 +14,13 @@ namespace ABP.ProductManagement.Products
 {
     public class ProductAppService : ProductManagementAppService, IProductAppService
     {
-        private readonly IRepository<Product, Guid> _productRepository;
+        private readonly IProductRepository _productRepository;
+        //private readonly IRepository<Product, Guid> _productRepository;
         private readonly IRepository<Category, Guid> _categoryRepository;
         private readonly IUnitOfWorkManager _unitOfWorkManager;
 
         public ProductAppService(
-            IRepository<Product, Guid> productRepository,
+            IProductRepository productRepository,
             IRepository<Category, Guid> categoryRepository,
             IUnitOfWorkManager unitOfWorkManager)
         {

@@ -8,7 +8,7 @@ using Volo.Abp.Application.Services;
 
 namespace ABP.ProductManagement.Products
 {
-    public interface IProductAppService : IApplicationService
+    public interface IProductAppService : IApplicationService//ICrudAppService
     {
         Task<PagedResultDto<ProductDto>> GetListAsync(PagedAndSortedResultRequestDto input);
         Task CreateAsync(CreateUpdateProductDto input);

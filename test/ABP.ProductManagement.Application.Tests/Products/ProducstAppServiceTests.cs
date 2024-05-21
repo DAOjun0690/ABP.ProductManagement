@@ -11,8 +11,7 @@ using Xunit;
 
 namespace ABP.ProductManagement.Products
 {
-    public class ProducstAppServiceTests<TStartupModule> :　
-        ProductManagementApplicationTestBase<TStartupModule> where TStartupModule : IAbpModule
+    public class ProducstAppServiceTests : ProductManagementApplicationTestBase<ProductManagementApplicationModule>
     {
         private readonly IProductAppService _productAppService;
 
